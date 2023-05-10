@@ -14,10 +14,10 @@ export default function UpdateProduct() {
   //form data
   const [formData, setFormData] = useState({
     name: product?.name,
-    size: product?.size,
+    // size: product?.size,
     category: product?.category,
     brand: product?.brand,
-    color: product?.color,
+    // color: product?.color,
     canBeShipped: product?.canBeShipped,
     images: [],
     price: product?.price,
@@ -37,10 +37,10 @@ export default function UpdateProduct() {
     product,
     error,
     isUpdated,
-    sizeOptionsCoverted,
-    handleSizeChange,
-    colorOptionsCoverted,
-    handleColorChangeOption,
+    // sizeOptionsCoverted,
+    // handleSizeChange,
+    // colorOptionsCoverted,
+    // handleColorChangeOption,
     loading;
 
   //---onSubmit---
@@ -81,7 +81,7 @@ export default function UpdateProduct() {
                 </div>
               </div>
               {/* size option */}
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Select Size
                 </label>
@@ -98,7 +98,7 @@ export default function UpdateProduct() {
                   closeMenuOnSelect={false}
                   onChange={(item) => handleSizeChange(item)}
                 />
-              </div>
+              </div> */}
               {/* Select category */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">
@@ -143,7 +143,7 @@ export default function UpdateProduct() {
               </div>
 
               {/* Select Color */}
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Select Color
                 </label>
@@ -160,7 +160,7 @@ export default function UpdateProduct() {
                   closeMenuOnSelect={false}
                   onChange={(e) => handleColorChangeOption(e)}
                 />
-              </div>
+              </div> */}
 
               {/* upload images */}
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
@@ -199,7 +199,7 @@ export default function UpdateProduct() {
                         </label>
                       </div>
                       <p className="text-xs text-gray-500">
-                        PNG, JPG, GIF up to 10MB
+                        PNG, JPG, GIF up to 1MB
                       </p>
                     </div>
                   </div>

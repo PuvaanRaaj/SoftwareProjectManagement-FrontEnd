@@ -146,13 +146,13 @@ const CategoryLinks = [
   },
 ];
 
-const colorsLinks = [
-  {
-    name: "All Colors",
-    href: "all-colors",
-    icon: QuestionMarkCircleIcon,
-  },
-];
+// const colorsLinks = [
+//   {
+//     name: "All Colors",
+//     href: "all-colors",
+//     icon: QuestionMarkCircleIcon,
+//   },
+// ];
 
 const brandsLinks = [
   {
@@ -301,7 +301,7 @@ export default function AddminDashboard() {
                       </div>
                     </div>
                     {/* colors links mobile */}
-                    <div className="mt-3 pt-3">
+                    {/* <div className="mt-3 pt-3">
                       <div className="space-y-1 px-2">
                         {colorsLinks.map((item) => (
                           <Link
@@ -317,7 +317,7 @@ export default function AddminDashboard() {
                           </Link>
                         ))}
                       </div>
-                    </div>
+                    </div> */}
                     {/* brands links mobile */}
                     <div className="mt-3 pt-3">
                       <div className="space-y-1 px-2">
@@ -431,7 +431,7 @@ export default function AddminDashboard() {
                 </div>
               </div>
               {/* colors links desktop */}
-              <div className="mt-3 pt-3">
+              {/* <div className="mt-3 pt-3">
                 <div className="space-y-1 px-2">
                   {colorsLinks.map((item) => (
                     <Link
@@ -447,7 +447,7 @@ export default function AddminDashboard() {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </div> */}
               {/* brands links desktop */}
               <div className="mt-3 pt-3">
                 <div className="space-y-1 px-2">

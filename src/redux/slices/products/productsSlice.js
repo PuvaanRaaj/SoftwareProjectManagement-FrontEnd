@@ -28,9 +28,7 @@ export const createProductAction = createAsyncThunk(
         name,
         description,
         category,
-        sizes,
         brand,
-        colors,
         price,
         totalQty,
         files,
@@ -51,13 +49,6 @@ export const createProductAction = createAsyncThunk(
       formData.append("brand", brand);
       formData.append("price", price);
       formData.append("totalQty", totalQty);
-
-      sizes.forEach((size) => {
-        formData.append("sizes", size);
-      });
-      colors.forEach((color) => {
-        formData.append("colors", color);
-      });
 
       files.forEach((file) => {
         formData.append("files", file);
@@ -85,9 +76,7 @@ export const updateProductAction = createAsyncThunk(
         name,
         description,
         category,
-        sizes,
         brand,
-        colors,
         price,
         totalQty,
         id,
@@ -105,9 +94,7 @@ export const updateProductAction = createAsyncThunk(
           name,
           description,
           category,
-          sizes,
           brand,
-          colors,
           price,
           totalQty,
         },

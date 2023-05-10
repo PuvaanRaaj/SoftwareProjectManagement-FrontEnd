@@ -94,7 +94,7 @@ export default function UpdateCategory() {
                   </Link>
                 </div>
 
-                <div>
+                {/* <div>
                   <div>
                     <Link
                       to="/admin/add-color"
@@ -102,7 +102,7 @@ export default function UpdateCategory() {
                       Add Color
                     </Link>
                   </div>
-                </div>
+                </div> */}
 
                 <div>
                   <div>

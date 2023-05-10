@@ -4,7 +4,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { fetchBrandsAction } from "../../../redux/slices/categories/brandsSlice";
 import { fetchCategoriesAction } from "../../../redux/slices/categories/categoriesSlice";
-import { fetchColorsAction } from "../../../redux/slices/categories/colorsSlice";
+// import { fetchColorsAction } from "../../../redux/slices/categories/colorsSlice";
 import { createProductAction } from "../../../redux/slices/products/productsSlice";
 
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
@@ -35,19 +35,19 @@ export default function AddProduct() {
     setFiles(newFiles);
     setFileErrs(newErrs);
   };
-  //Sizes
-  const sizes = ["S", "M", "L", "XL", "XXL"];
-  const [sizeOption, setSizeOption] = useState([]);
-  const handleSizeChange = (sizes) => {
-    setSizeOption(sizes);
-  };
-  //converted sizes
-  const sizeOptionsCoverted = sizes?.map((size) => {
-    return {
-      value: size,
-      label: size,
-    };
-  });
+  // //Sizes
+  // const sizes = ["S", "M", "L", "XL", "XXL"];
+  // const [sizeOption, setSizeOption] = useState([]);
+  // const handleSizeChange = (sizes) => {
+  //   setSizeOption(sizes);
+  // };
+  // //converted sizes
+  // const sizeOptionsCoverted = sizes?.map((size) => {
+  //   return {
+  //     value: size,
+  //     label: size,
+  //   };
+  // });
 
   //categories
   useEffect(() => {
@@ -65,25 +65,25 @@ export default function AddProduct() {
     brands: { brands },
   } = useSelector((state) => state?.brands);
   //colors
-  const [colorsOption, setColorsOption] = useState([]);
+  // const [colorsOption, setColorsOption] = useState([]);
 
-  const {
-    colors: { colors },
-  } = useSelector((state) => state?.colors);
-  useEffect(() => {
-    dispatch(fetchColorsAction());
-  }, [dispatch]);
+  // const {
+  //   colors: { colors },
+  // } = useSelector((state) => state?.colors);
+  // useEffect(() => {
+  //   dispatch(fetchColorsAction());
+  // }, [dispatch]);
 
-  const handleColorChange = (colors) => {
-    setColorsOption(colors);
-  };
-  //converted colors
-  const colorsCoverted = colors?.map((color) => {
-    return {
-      value: color?.name,
-      label: color?.name,
-    };
-  });
+  // const handleColorChange = (colors) => {
+  //   setColorsOption(colors);
+  // };
+  // //converted colors
+  // const colorsCoverted = colors?.map((color) => {
+  //   return {
+  //     value: color?.name,
+  //     label: color?.name,
+  //   };
+  //});
 
   //---form data---
   const [formData, setFormData] = useState({
@@ -112,8 +112,8 @@ export default function AddProduct() {
       createProductAction({
         ...formData,
         files,
-        colors: colorsOption?.map((color) => color.label),
-        sizes: sizeOption?.map((size) => size?.label),
+        // colors: colorsOption?.map((color) => color.label),
+        // sizes: sizeOption?.map((size) => size?.label),
       })
     );
 
@@ -122,9 +122,9 @@ export default function AddProduct() {
       name: "",
       description: "",
       category: "",
-      sizes: "",
+      // sizes: "",
       brand: "",
-      colors: "",
+      // colors: "",
       images: "",
       price: "",
       totalQty: "",
@@ -167,7 +167,7 @@ export default function AddProduct() {
                 </div>
               </div>
               {/* size option */}
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Select Size
                 </label>
@@ -184,7 +184,7 @@ export default function AddProduct() {
                   closeMenuOnSelect={false}
                   onChange={(item) => handleSizeChange(item)}
                 />
-              </div>
+              </div> */}
               {/* Select category */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">
@@ -227,7 +227,7 @@ export default function AddProduct() {
               </div>
 
               {/* Select Color */}
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Select Color
                 </label>
@@ -244,7 +244,7 @@ export default function AddProduct() {
                   closeMenuOnSelect={false}
                   onChange={(e) => handleColorChange(e)}
                 />
-              </div>
+              </div> */}
 
               {/* upload images */}
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">

@@ -63,7 +63,7 @@ export default function CategoryToAdd() {
                   </Link>
                 </div>
 
-                <div>
+                {/* <div>
                   <div>
                     <Link
                       to="/admin/add-color"
@@ -71,7 +71,7 @@ export default function CategoryToAdd() {
                       Add Color
                     </Link>
                   </div>
-                </div>
+                </div> */}
 
                 <div>
                   <div>
