@@ -45,22 +45,22 @@ const product = {
       primary: false,
     },
   ],
-  colors: [
-    { name: "Black", bgColor: "bg-gray-900", selectedColor: "ring-gray-900" },
-    {
-      name: "Heather Grey",
-      bgColor: "bg-gray-400",
-      selectedColor: "ring-gray-400",
-    },
-  ],
-  sizes: [
-    { name: "XXS", inStock: true },
-    { name: "XS", inStock: true },
-    { name: "S", inStock: true },
-    { name: "M", inStock: true },
-    { name: "L", inStock: true },
-    { name: "XL", inStock: false },
-  ],
+  // colors: [
+  //   { name: "Black", bgColor: "bg-gray-900", selectedColor: "ring-gray-900" },
+  //   {
+  //     name: "Heather Grey",
+  //     bgColor: "bg-gray-400",
+  //     selectedColor: "ring-gray-400",
+  //   },
+  // ],
+  // sizes: [
+  //   { name: "XXS", inStock: true },
+  //   { name: "XS", inStock: true },
+  //   { name: "S", inStock: true },
+  //   { name: "M", inStock: true },
+  //   { name: "L", inStock: true },
+  //   { name: "XL", inStock: false },
+  // ],
   description: `
     <p>The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit. They are hand cut and sewn locally, with a special dye technique that gives each tee it's own look.</p>
     <p>Looking to stock your closet? The Basic tee also comes in a 3-pack or 5-pack at a bundle discount.</p>
@@ -130,21 +130,21 @@ export default function Product() {
         text: "This product is already in cart",
       });
     }
-    //check if color/size selected
-    if (selectedColor === "") {
-      return Swal.fire({
-        icon: "error",
-        title: "Oops...!",
-        text: "Please select product color",
-      });
-    }
-    if (selectedSize === "") {
-      return Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Please select  p roduct size",
-      });
-    }
+    // //check if color/size selected
+    // if (selectedColor === "") {
+    //   return Swal.fire({
+    //     icon: "error",
+    //     title: "Oops...!",
+    //     text: "Please select product color",
+    //   });
+    // }
+    // if (selectedSize === "") {
+    //   return Swal.fire({
+    //     icon: "error",
+    //     title: "Oops...",
+    //     text: "Please select  p roduct size",
+    //   });
+    // }
     dispatch(
       addOrderToCartaction({
         _id: product?._id,
@@ -152,8 +152,8 @@ export default function Product() {
         qty: 1,
         price: product?.price,
         description: product?.description,
-        color: selectedColor,
-        size: selectedSize,
+        // color: selectedColor,
+        // size: selectedSize,
         image: product?.images[0],
         totalPrice: product?.price,
         qtyLeft: product?.qtyLeft,
@@ -249,7 +249,7 @@ export default function Product() {
           <div className="mt-8 lg:col-span-5">
             <>
               {/* Color picker */}
-              <div>
+              {/* <div>
                 <h2 className="text-sm font-medium text-gray-900">Color</h2>
                 <div className="flex items-center space-x-3">
                   <RadioGroup value={selectedColor} onChange={setSelectedColor}>
@@ -280,19 +280,19 @@ export default function Product() {
                     </div>
                   </RadioGroup>
                 </div>
-              </div>
+              </div> */}
 
               {/* Size picker */}
-              <div className="mt-8">
+              {/* <div className="mt-8">
                 <div className="flex items-center justify-between">
                   <h2 className="text-sm font-medium text-gray-900">Size</h2>
                 </div>
                 <RadioGroup
                   value={selectedSize}
                   onChange={setSelectedSize}
-                  className="mt-2">
+                  className="mt-2"> */}
                   {/* Choose size */}
-                  <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+                  {/* <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
                     {product?.sizes?.map((size) => (
                       <RadioGroup.Option
                         key={size}
@@ -310,7 +310,7 @@ export default function Product() {
                     ))}
                   </div>
                 </RadioGroup>
-              </div>
+              </div> */}
               {/* add to cart */}
               {product?.qtyLeft <= 0 ? (
                 <button

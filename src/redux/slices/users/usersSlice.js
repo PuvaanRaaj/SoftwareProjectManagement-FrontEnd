@@ -4,7 +4,7 @@ import axios from "axios";
 import baseURL from "../../../utils/baseURL";
 import {
   resetErrAction,
-  
+  resetSuccessAction,
 } from "../globalAction/globalAction";
 //initialState
 const initialState = {

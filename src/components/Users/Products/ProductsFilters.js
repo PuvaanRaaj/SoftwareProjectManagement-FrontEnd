@@ -19,7 +19,7 @@ import { useSearchParams } from "react-router-dom";
 import baseURL from "../../../utils/baseURL";
 import { fetchProductsAction } from "../../../redux/slices/products/productsSlice";
 import { fetchBrandsAction } from "../../../redux/slices/categories/brandsSlice";
-import { fetchColorsAction } from "../../../redux/slices/categories/colorsSlice";
+// import { fetchColorsAction } from "../../../redux/slices/categories/colorsSlice";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 import NoDataFound from "../../NoDataFound/NoDataFound";
@@ -61,7 +61,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const sizeCategories = ["S", "M", "L", "XL", "XXL"];
+// const sizeCategories = ["S", "M", "L", "XL", "XXL"];
 
 export default function ProductsFilters() {
   //dispatch
@@ -72,11 +72,11 @@ export default function ProductsFilters() {
   const [params, setParams] = useSearchParams();
   const category = params.get("category");
   //filters
-  const [color, setColor] = useState("");
+  // const [color, setColor] = useState("");
   const [price, setPrice] = useState("");
   const [brand, setBrand] = useState("");
-  const [size, setSize] = useState("");
-  console.log(color);
+  // const [size, setSize] = useState("");
+
   //build up url
   let productUrl = `${baseURL}/products`;
   if (category) {
@@ -85,15 +85,15 @@ export default function ProductsFilters() {
   if (brand) {
     productUrl = `${productUrl}&brand=${brand}`;
   }
-  if (size) {
-    productUrl = `${productUrl}&size=${size}`;
-  }
+  // if (size) {
+  //   productUrl = `${productUrl}&size=${size}`;
+  // }
   if (price) {
     productUrl = `${productUrl}&price=${price}`;
   }
-  if (color) {
-    productUrl = `${productUrl}&color=${color?.name}`;
-  }
+  // if (color) {
+  //   productUrl = `${productUrl}&color=${color?.name}`;
+  // }
   //fetch all products
   useEffect(() => {
     dispatch(
@@ -101,7 +101,7 @@ export default function ProductsFilters() {
         url: productUrl,
       })
     );
-  }, [dispatch, category, size, brand, price, color]);
+  }, [dispatch, category,  brand, price]);
   //get store data
   const {
     products: { products },
@@ -123,21 +123,21 @@ export default function ProductsFilters() {
   } = useSelector((state) => state?.brands);
 
   //fetch colors
-  useEffect(() => {
-    dispatch(
-      fetchColorsAction({
-        url: productUrl,
-      })
-    );
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(
+  //     fetchColorsAction({
+  //       url: productUrl,
+  //     })
+  //   );
+  // }, [dispatch]);
 
   //get store data
-  const {
-    colors: { colors },
-  } = useSelector((state) => state?.colors);
+  // const {
+  //   colors: { colors },
+  // } = useSelector((state) => state?.colors);
 
-  let colorsLoading;
-  let colorsError;
+  // let colorsLoading;
+  // let colorsError;
 
   let productsLoading;
   let productsError;
@@ -240,9 +240,9 @@ export default function ProductsFilters() {
                         <>
                           <h3 className="-mx-2 -my-3 flow-root">
                             <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
-                              <span className="font-medium text-gray-900">
+                              {/* <span className="font-medium text-gray-900">
                                 Choose Color
-                              </span>
+                              </span> */}
                               <span className="ml-6 flex items-center">
                                 {open ? (
                                   <MinusIcon
@@ -262,7 +262,7 @@ export default function ProductsFilters() {
                           <Disclosure.Panel className="pt-6">
                             <div className="space-y-6">
                               {/* Any Color */}
-                              {colorsLoading ? (
+                              {/* {colorsLoading ? (
                                 <h2>Loading...</h2>
                               ) : colorsError ? (
                                 <h2>{colorsError}</h2>
@@ -293,7 +293,7 @@ export default function ProductsFilters() {
                                     ))}
                                   </div>
                                 </RadioGroup>
-                              )}
+                              )} */}
                             </div>
                           </Disclosure.Panel>
                         </>
@@ -403,7 +403,7 @@ export default function ProductsFilters() {
                     {/*  end product brand categories section */}
 
                     {/* product size categories   */}
-                    <Disclosure
+                    {/* <Disclosure
                       as="div"
                       key="disclosure"
                       className="border-t border-gray-200 px-4 py-6">
@@ -431,7 +431,7 @@ export default function ProductsFilters() {
                           </h3>
                           <Disclosure.Panel className="pt-6">
                             <div className="space-y-6">
-                              {sizeCategories.map((size) => (
+                              {/* {sizeCategories.map((size) => (
                                 <div key={size} className="flex items-center">
                                   <input
                                     type="radio"
@@ -443,18 +443,19 @@ export default function ProductsFilters() {
                                     {size}
                                   </label>
                                 </div>
-                              ))}
-                            </div>
+                              ))} */}
+                            {/* </div>
                           </Disclosure.Panel>
                         </>
                       )}
-                    </Disclosure>
+                    </Disclosure> */}
+
                     {/*  end product size categories section */}
                   </form>
                   {/* end of mobile filters */}
                 </Dialog.Panel>
               </Transition.Child>
-            </div>
+            </div> 
           </Dialog>
         </Transition.Root>
 
@@ -530,7 +531,7 @@ export default function ProductsFilters() {
                 <h3 className="sr-only">Categories</h3>
 
                 {/* colors categories Desktop section */}
-                <Disclosure
+                {/* <Disclosure
                   as="div"
                   key="disclosure"
                   className="border-t border-gray-200 px-4 py-6">
@@ -560,7 +561,7 @@ export default function ProductsFilters() {
                       <Disclosure.Panel className="pt-6">
                         <div className="space-y-6">
                           {/* Any Color */}
-                          {colorsLoading ? (
+                          {/* {colorsLoading ? (
                             <h2>Loading...</h2>
                           ) : colorsError ? (
                             <h2>{colorsError}</h2>
@@ -586,15 +587,15 @@ export default function ProductsFilters() {
                                       className="h-8 w-8 border border-black border-opacity-10 rounded-full"
                                     />
                                   </RadioGroup.Option>
-                                ))}
-                              </div>
+                                ))} */}
+                              {/* </div>
                             </RadioGroup>
-                          )}
-                        </div>
+                          )} */}
+                        {/* </div>
                       </Disclosure.Panel>
                     </>
-                  )}
-                </Disclosure>
+                  )} */}
+                {/* </Disclosure> */} 
                 {/* colors end categories section */}
 
                 {/* price categories section Desktop*/}
@@ -696,7 +697,7 @@ export default function ProductsFilters() {
                 {/*  end product brand categories section */}
 
                 {/* product size categories  desktop */}
-                <Disclosure
+                {/* <Disclosure
                   as="div"
                   key="disclosure"
                   className="border-t border-gray-200 px-4 py-6">
@@ -724,7 +725,7 @@ export default function ProductsFilters() {
                       </h3>
                       <Disclosure.Panel className="pt-6">
                         <div className="space-y-6">
-                          {sizeCategories.map((option) => (
+                          {/* {sizeCategories.map((option) => (
                             <div key={option} className="flex items-center">
                               <input
                                 type="radio"
@@ -736,12 +737,12 @@ export default function ProductsFilters() {
                                 {option}
                               </label>
                             </div>
-                          ))}
-                        </div>
+                          ))} */}
+                        {/* </div>
                       </Disclosure.Panel>
                     </>
                   )}
-                </Disclosure>
+                </Disclosure> */}
                 {/*  end product size categories section */}
               </form>
 
