@@ -169,6 +169,7 @@ const AddShippingAddress = () => {
                 <option value="Ghana">Ghana</option>
                 <option value="Nigeria">Nigeria</option>
                 <option value="South Africa">South Africa</option>
+                <option value="South Africa">Malaysia</option>
               </select>
             </div>
           </div>
