@@ -207,12 +207,12 @@ const productSlice = createSlice({
     builder.addCase(fetchProductAction.fulfilled, (state, action) => {
       state.loading = false;
       state.product = action.payload;
-      state.isAdded = true;
+      
     });
     builder.addCase(fetchProductAction.rejected, (state, action) => {
       state.loading = false;
       state.product = null;
-      state.isAdded = false;
+     
       state.error = action.payload;
     });
     //reset error
