@@ -25,11 +25,11 @@ export default function OrdersList() {
     dispatch(fetchOrdersAction());
   }, [dispatch]);
   //get data from store
-  // const {
-  //   error,
-  //   loading,
-  //   orders: { orders },
-  // } = useSelector((state) => state?.orders);
+  const {
+    error,
+    loading,
+    orders: { orders },
+  } = useSelector((state) => state?.orders);
 
   return (
     <>
