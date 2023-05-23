@@ -15,7 +15,7 @@ import {
   UserGroupIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import logo from "../Navbar/logo3.png";
+import logo from "./IMG_7443.jpg";
 const ordersLinks = [
   {
     name: "Dashboard",
@@ -491,14 +491,14 @@ export default function AddminDashboard() {
                     <div className="flex items-center">
                       <img
                         className="hidden h-16 w-16 rounded-full sm:block"
-                        src="../Admin/IMG_7443.JPG"
+                        src={logo}
                         alt=""
                       />
                       <div>
                         <div className="flex items-center">
                           <img
                             className="h-16 w-16 rounded-full sm:hidden"
-                            src="../Admin/IMG_7443.JPG"
+                            src={logo}
                             alt=""
                           />
                           <h1 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:leading-9">
