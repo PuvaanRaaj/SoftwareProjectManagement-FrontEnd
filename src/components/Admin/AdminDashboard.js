@@ -491,14 +491,14 @@ export default function AddminDashboard() {
                     <div className="flex items-center">
                       <img
                         className="hidden h-16 w-16 rounded-full sm:block"
-                        src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fmy.linkedin.com%2Fin%2Fyang-jeng-foong-62a054267%3Ftrk%3Dpeople_directory&psig=AOvVaw1BJ8dyb5iXwNzunHRLysRZ&ust=1683313120099000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPDftpas3P4CFQAAAAAdAAAAABAE"
+                        src="IMG_7443.JPG"
                         alt=""
                       />
                       <div>
                         <div className="flex items-center">
                           <img
                             className="h-16 w-16 rounded-full sm:hidden"
-                            src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fmy.linkedin.com%2Fin%2Fyang-jeng-foong-62a054267%3Ftrk%3Dpeople_directory&psig=AOvVaw1BJ8dyb5iXwNzunHRLysRZ&ust=1683313120099000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPDftpas3P4CFQAAAAAdAAAAABAE"
+                            src="IMG_7443.JPG"
                             alt=""
                           />
                           <h1 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:leading-9">
