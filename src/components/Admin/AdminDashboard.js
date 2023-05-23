@@ -490,14 +490,14 @@ export default function AddminDashboard() {
                     {/* Profile */}
                     <div className="flex items-center">
                       <img
-                        className="hidden h-16 w-16 rounded-full sm:block"
+                        className="hidden h-16 w-16 rounded-full bg-cover sm:block"
                         src={logo}
                         alt=""
                       />
                       <div>
                         <div className="flex items-center">
                           <img
-                            className="h-16 w-16 rounded-full sm:hidden"
+                            className="h-16 w-16 rounded-full bg-cover sm:hidden"
                             src={logo}
                             alt=""
                           />
