@@ -6,25 +6,25 @@ This project is a frontend application built using React for my final project in
 
 First, you will need to clone the repository:
 
-\`\`\`bash
+\`\`\`
 git clone https://github.com/PuvaanRaaj/SoftwareProjectManagement-FrontEnd.git
 \`\`\`
 
 Next, navigate into the project directory:
 
-\`\`\`bash
+\`\`\`
 cd your-project-name
 \`\`\`
 
 Then, install the necessary dependencies:
 
-\`\`\`bash
+\`\`\`
 npm install
 \`\`\`
 
 Once the installation is complete, you can run the application in development mode with:
 
-\`\`\`bash
+\`\`\`
 npm start
 \`\`\`
 
