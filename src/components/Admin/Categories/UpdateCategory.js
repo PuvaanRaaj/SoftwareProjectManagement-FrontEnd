@@ -5,11 +5,12 @@ import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 
+
 export default function UpdateCategory() {
   const { id } = useParams();
 
   const [formData, setFormData] = useState({
-    name: "",
+    name: "", // Provide an initial value for name
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -21,7 +22,7 @@ export default function UpdateCategory() {
         setLoading(true);
         const response = await axios.get(`/api/categories/${id}`);
         const category = response.data.category;
-        setFormData({ name: category.name });
+        setFormData({ name: category?.name }); // Add a check for category.name
         setLoading(false);
       } catch (error) {
         setLoading(false);
