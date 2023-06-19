@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteBrandAction } from "../../../redux/slices/categories/brandsSlice";
 import { Link } from "react-router-dom";
 import { fetchBrandsAction } from "../../../redux/slices/categories/brandsSlice";
-import { deleteBrandAction } from "../../../redux/slices/categories/brandsSlice";
+
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 import NoDataFound from "../../NoDataFound/NoDataFound";
