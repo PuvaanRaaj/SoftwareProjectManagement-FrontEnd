@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteBrandAction } from "../../../redux/slices/categories/brandsSlice";
 import { Link } from "react-router-dom";
 import { fetchBrandsAction } from "../../../redux/slices/categories/brandsSlice";
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
@@ -15,19 +16,26 @@ const people = [
   // More people...
 ];
 export default function BrandsList() {
+  
   //dispatch
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchBrandsAction());
   }, [dispatch]);
-  const {
-    brands: { brands },
-    loading,
-    error,
-  } = useSelector((state) => state?.brands);
+  const { brands: { brands }, loading, error, isDelete } = useSelector((state) => state?.brands);
 
-  //delete category handler
-  const deleteCategoryHandler = (id) => {};
+  
+   //delete brand handler
+   const deleteBrandHandler = (id) => {
+    dispatch(deleteBrandAction(id));
+  };
+
+  useEffect(() => {
+    if (isDelete) {
+      // If a brand is deleted, re-fetch the list of brands
+      dispatch(fetchBrandsAction());
+    }
+  }, [dispatch, isDelete]);
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -91,7 +99,7 @@ export default function BrandsList() {
                           {new Date(brand?.createdAt).toLocaleDateString()}
                         </td>
                         {/* edit icon */}
-                        {/* <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
+                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
                           <Link
                             to={`/admin/edit-category/${category?._id}`}
                             state={{
@@ -114,11 +122,11 @@ export default function BrandsList() {
 
                             <span className="sr-only">, {category?.name}</span>
                           </Link>
-                        </td> */}
+                        </td>
                         {/* delete icon */}
-                        {/* <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
+                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
                           <button
-                            onClick={() => deleteCategoryHandler(category?._id)}
+                            onClick={() => deleteBrandHandler(brand?._id)}
                             className="text-indigo-600 hover:text-indigo-900">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +142,7 @@ export default function BrandsList() {
                               />
                             </svg>
                           </button>
-                        </td> */}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
