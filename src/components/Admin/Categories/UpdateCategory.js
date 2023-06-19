@@ -1,38 +1,57 @@
-
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
-import {
-  updateCategoryAction,
-  resetErrAction,
-  resetSuccessAction,
-} from "../../../redux/slices/categories/categoriesSlice";
 
 export default function UpdateCategory() {
-  const dispatch = useDispatch();
-
-  const { category, loading, error, isUpdated } = useSelector(
-    (state) => state.categories
-  );
+  const { id } = useParams(); // Access the category ID from the URL
 
   const [formData, setFormData] = useState({
-    categoryName: category.name,
+    name: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [isUpdated, setIsUpdated] = useState(false);
 
-  const { categoryName } = formData;
+  useEffect(() => {
+    // Fetch the category data from the server
+    const fetchCategory = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`/api/categories/${id}`);
+        const category = response.data.category;
+        setFormData({ name: category.name });
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        setError(error.message);
+      }
+    };
+
+    fetchCategory();
+  }, [id]);
 
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const categoryId = category._id; // Fetch the category ID from the current category
 
-    dispatch(updateCategoryAction({ id: categoryId, name: categoryName }));
+    try {
+      setLoading(true);
+      setError(null);
+      setIsUpdated(false);
+
+      const response = await axios.put(`/api/categories/${id}`, formData);
+      setLoading(false);
+      setIsUpdated(true);
+    } catch (error) {
+      setLoading(false);
+      setError(error.message);
+    }
   };
 
   return (
