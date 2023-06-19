@@ -3,7 +3,7 @@ import baseURL from "../../../utils/baseURL";
 import {
   resetErrAction,
   resetSuccessAction,
-} from "../globalActions/globalActions";
+} from "../globalAction/globalAction";
 const { createAsyncThunk, createSlice } = require("@reduxjs/toolkit");
 
 //initalsState
