@@ -61,6 +61,29 @@ export const fetchCategoriesAction = createAsyncThunk(
     }
   }
 );
+
+// Delete category action
+export const deleteCategoryAction = createAsyncThunk(
+  "category/delete",
+  async (categoryId, { rejectWithValue, getState, dispatch }) => {
+    try {
+      // Token - Authenticated
+      const token = getState()?.users?.userAuth?.userInfo?.token;
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      // Send a DELETE request to your backend API
+      await axios.delete(`${baseURL}/categories/${categoryId}`, config);
+      // If successful, return the id of the deleted category
+      return categoryId;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 //slice
 const categorySlice = createSlice({
   name: "categories",
@@ -102,6 +125,13 @@ const categorySlice = createSlice({
     //Reset success
     builder.addCase(resetSuccessAction.pending, (state, action) => {
       state.isAdded = false;
+    });
+
+    // Add a new case for the deleteCategoryAction in your slice
+    builder.addCase(deleteCategoryAction.fulfilled, (state, action) => {
+      // Remove the deleted category from the categories array in your state
+      state.categories = state.categories.filter(category => category._id !== action.payload);
+      state.isDelete = true;
     });
   },
 });

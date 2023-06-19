@@ -85,7 +85,7 @@ export default function UpdateCategory() {
                 </div>
               </div>
 
-              <div className="mt-6 grid grid-cols-3 gap-3">
+              <div className="mt-6 grid grid-cols-2 gap-3">
                 <div>
                   <Link
                     to="/admin/add-brand"
