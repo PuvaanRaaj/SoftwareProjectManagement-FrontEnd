@@ -4,6 +4,8 @@ import axios from 'axios';
 import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
+import baseURL from "../../../utils/baseURL";
+
 
 export default function UpdateBrand() {
   const [formData, setFormData] = useState({
