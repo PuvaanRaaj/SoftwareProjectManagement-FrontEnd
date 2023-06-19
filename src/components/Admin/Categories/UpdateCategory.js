@@ -21,7 +21,7 @@ export default function UpdateCategory() {
     const fetchCategory = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/categories/${id}`);
+        const response = await axios.get(`${baseURL}/categories/${id}`);
         const category = response.data.category;
         setFormData({ name: category?.name }); // Add a check for category.name
         setLoading(false);
@@ -46,7 +46,7 @@ export default function UpdateCategory() {
       setError(null);
       setIsUpdated(false);
 
-      const response = await axios.put(`{${baseURL}}/categories/${id}`, formData);
+      const response = await axios.put(`${baseURL}/categories/${id}`, formData);
       setLoading(false);
       setIsUpdated(true);
     } catch (error) {
