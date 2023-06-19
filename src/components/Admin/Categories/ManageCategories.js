@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchCategoriesAction, deleteCategoryAction } from "../../../redux/slices/categories/categoriesSlice";
+import { fetchCategoriesAction } from "../../../redux/slices/categories/categoriesSlice";
 
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
@@ -19,13 +19,8 @@ export default function ManageCategories() {
     error,
   } = useSelector((state) => state?.categories);
 
-  const DeleteCategory = () => {
-  const { dispatch } = useDispatch();
-
-  const deleteCategoryHandler = (id) => {
-    dispatch(deleteCategoryAction(id));
-  };
-  };
+  //delete category handler
+  const deleteCategoryHandler = (id) => {};
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -134,9 +129,8 @@ export default function ManageCategories() {
                         {/* delete icon */}
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
                           <button
-                            onClick={deleteCategoryHandler}
+                            onClick={() => deleteCategoryHandler(category?._id)}
                             className="text-indigo-600 hover:text-indigo-900">
-                              
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
