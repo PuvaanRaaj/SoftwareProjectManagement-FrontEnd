@@ -18,49 +18,44 @@ import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 
 export default function ShoppingCart() {
-  // Dispatch
+  //dispatch
   const dispatch = useDispatch();
-
-  // Fetch cart items from local storage
   useEffect(() => {
     dispatch(getCartItemsFromLocalStorageAction());
   }, [dispatch]);
-
-  // Coupon state
+  //coupon state
   const [couponCode, setCouponCode] = useState(null);
-
-  // Apply coupon submit handler
   const applyCouponSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchCouponAction(couponCode));
     setCouponCode("");
   };
 
-  // Get coupon from store
+  //get coupon  from store
   const { coupon, loading, error, isAdded } = useSelector(
     (state) => state?.coupons
   );
-
-  // Get cart items from store
+  //get cart items from store
   const { cartItems } = useSelector((state) => state?.carts);
-
-  // Add to cart handler
+  //add to cart handler
   const changeOrderItemQtyHandler = (productId, qty) => {
     dispatch(changeOrderItemQty({ productId, qty }));
     dispatch(getCartItemsFromLocalStorageAction());
   };
-
-  // Calculate total price
+  console.log(cartItems);
+  //calculate total price
   let sumTotalPrice = 0;
+  sumTotalPrice = cartItems?.reduce((acc, current) => {
+    return acc + current?.totalPrice;
+  }, 0);
+
+  //check if coupon found
   if (coupon) {
-    sumTotalPrice = cartItems?.reduce((acc, current) => {
-      return acc + current?.totalPrice;
-    }, 0);
     sumTotalPrice =
       sumTotalPrice - (sumTotalPrice * coupon?.coupon?.discount) / 100;
   }
-
-  // Remove cart item handler
+  //price of the product - (price of product x discount/100)
+  //remove cart  Item handler
   const removeOrderItemQtyHandler = (productId) => {
     dispatch(removeOrderItemQty(productId));
     dispatch(getCartItemsFromLocalStorageAction());
@@ -169,7 +164,7 @@ export default function ShoppingCart() {
               <div className="flex items-center justify-between">
                 <dt className="text-sm text-gray-600">Subtotal</dt>
                 <dd className="text-sm font-medium text-gray-900">
-                  $ {sumTotalPrice}.00
+                RM {sumTotalPrice}
                 </dd>
               </div>
               <div className="flex items-center justify-between border-t border-gray-200 pt-4"></div>
