@@ -18,48 +18,54 @@ import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 
 export default function ShoppingCart() {
-  //dispatch
+  // Dispatch
   const dispatch = useDispatch();
+
+  // Fetch cart items from local storage
   useEffect(() => {
     dispatch(getCartItemsFromLocalStorageAction());
   }, [dispatch]);
-  //coupon state
+
+  // Coupon state
   const [couponCode, setCouponCode] = useState(null);
+
+  // Apply coupon submit handler
   const applyCouponSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchCouponAction(couponCode));
     setCouponCode("");
   };
 
-  //get coupon  from store
+  // Get coupon from store
   const { coupon, loading, error, isAdded } = useSelector(
     (state) => state?.coupons
   );
-  //get cart items from store
+
+  // Get cart items from store
   const { cartItems } = useSelector((state) => state?.carts);
-  //add to cart handler
+
+  // Add to cart handler
   const changeOrderItemQtyHandler = (productId, qty) => {
     dispatch(changeOrderItemQty({ productId, qty }));
     dispatch(getCartItemsFromLocalStorageAction());
   };
-  console.log(cartItems);
-  //calculate total price
-  let sumTotalPrice = 0;
-  sumTotalPrice = cartItems?.reduce((acc, current) => {
-    return acc + current?.totalPrice;
-  }, 0);
 
-  //check if coupon found
+  // Calculate total price
+  let sumTotalPrice = 0;
   if (coupon) {
+    sumTotalPrice = cartItems?.reduce((acc, current) => {
+      return acc + current?.totalPrice;
+    }, 0);
     sumTotalPrice =
       sumTotalPrice - (sumTotalPrice * coupon?.coupon?.discount) / 100;
   }
-  //price of the product - (price of product x discount/100)
-  //remove cart  Item handler
+
+  // Remove cart item handler
   const removeOrderItemQtyHandler = (productId) => {
     dispatch(removeOrderItemQty(productId));
     dispatch(getCartItemsFromLocalStorageAction());
   };
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 pt-16 pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
