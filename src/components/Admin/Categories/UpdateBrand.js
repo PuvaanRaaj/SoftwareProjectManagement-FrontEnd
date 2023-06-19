@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   updateBrandAction,
-  fetchBrandAction,
+  fetchBrandsAction,
 } from "../../../redux/slices/categories/brandsSlice"; 
 import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
