@@ -95,7 +95,7 @@ export default function OrderPayment() {
 
                           <div className="flex flex-1 items-end justify-between pt-2">
                             <p className="mt-1 text-sm font-medium text-gray-900">
-                              RM {product?.price} X {product?.qty} =$
+                              RM {product?.price} X {product?.qty} =RM
                               {product?.totalPrice}
                             </p>
                           </div>
