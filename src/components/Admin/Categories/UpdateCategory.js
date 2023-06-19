@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 
 export default function UpdateCategory() {
-  const { id } = useParams(); // Access the category ID from the URL
+  const { id } = useParams();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -16,7 +16,6 @@ export default function UpdateCategory() {
   const [isUpdated, setIsUpdated] = useState(false);
 
   useEffect(() => {
-    // Fetch the category data from the server
     const fetchCategory = async () => {
       try {
         setLoading(true);
@@ -56,7 +55,7 @@ export default function UpdateCategory() {
 
   return (
     <>
-      {error && <ErrorComponent message={error?.message} />}
+      {error && <ErrorComponent message={error} />}
       {isUpdated && <SuccessMsg message="Category updated successfully" />}
       <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -68,11 +67,7 @@ export default function UpdateCategory() {
             strokeWidth="1.5"
             stroke="currentColor"
           >
-           <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"
-            />
+            {/* SVG path */}
           </svg>
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
             Update Product Category
@@ -92,9 +87,9 @@ export default function UpdateCategory() {
                 <div className="mt-1">
                   <input
                     id="name"
-                    name="categoryName"
+                    name="name"
                     type="text"
-                    value={categoryName}
+                    value={formData.name}
                     onChange={handleOnChange}
                     className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   />
@@ -135,14 +130,12 @@ export default function UpdateCategory() {
                 </div>
 
                 <div>
-                  <div>
-                    <Link
-                      to="/admin/add-category"
-                      className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
-                    >
-                      Add Category
-                    </Link>
-                  </div>
+                  <Link
+                    to="/admin/add-category"
+                    className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
+                  >
+                    Add Category
+                  </Link>
                 </div>
               </div>
             </div>
