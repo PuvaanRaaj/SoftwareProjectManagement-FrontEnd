@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import axios from "axios";
-import {
-  updateBrandAction,
-  fetchBrandsAction,
-} from "../../../redux/slices/categories/brandsSlice"; 
 import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
@@ -20,8 +15,6 @@ export default function UpdateBrand() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchBrand = async () => {
@@ -52,7 +45,7 @@ export default function UpdateBrand() {
       setError(null);
       setIsUpdated(false);
 
-      await dispatch(updateBrandAction({ id, name: formData.name }));
+      const response = await axios.put(`${baseURL}/brands/${id}`, formData);
       setLoading(false);
       setIsUpdated(true);
     } catch (error) {
@@ -60,7 +53,6 @@ export default function UpdateBrand() {
       setError(error.message);
     }
   };
-
 
   return (
     <>
