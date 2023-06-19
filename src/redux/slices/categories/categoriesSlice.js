@@ -62,28 +62,24 @@ export const fetchCategoriesAction = createAsyncThunk(
   }
 );
 
-// Delete category action
+//delete category action
 export const deleteCategoryAction = createAsyncThunk(
   "category/delete",
-  async (categoryId, { rejectWithValue, getState, dispatch }) => {
+  async (id, { rejectWithValue, getState, dispatch }) => {
     try {
-      // Token - Authenticated
       const token = getState()?.users?.userAuth?.userInfo?.token;
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
-      // Send a DELETE request to your backend API
-      await axios.delete(`${baseURL}/categories/${categoryId}`, config);
-      // If successful, return the id of the deleted category
-      return categoryId;
+      const { data } = await axios.delete(`${baseURL}/categories/${id}`, config);
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response?.data);
     }
   }
 );
-
 //slice
 const categorySlice = createSlice({
   name: "categories",
@@ -128,10 +124,16 @@ const categorySlice = createSlice({
     });
 
     // Add a new case for the deleteCategoryAction in your slice
+    builder.addCase(deleteCategoryAction.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(deleteCategoryAction.fulfilled, (state, action) => {
-      // Remove the deleted category from the categories array in your state
-      state.categories = state.categories.filter(category => category._id !== action.payload);
+      state.loading = false;
       state.isDelete = true;
+    });
+    builder.addCase(deleteCategoryAction.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     });
   },
 });

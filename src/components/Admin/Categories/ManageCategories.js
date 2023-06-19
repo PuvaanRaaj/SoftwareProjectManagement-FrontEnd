@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchCategoriesAction, deleteCategoryAction } from "../../../redux/slices/categories/categoriesSlice";
-
-
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 import NoDataFound from "../../NoDataFound/NoDataFound";
@@ -22,9 +20,15 @@ export default function ManageCategories() {
 
   //delete category handler
   const deleteCategoryHandler = (id) => {
-    if (window.confirm("Are you sure you want to delete this category?")) {
-      dispatch(deleteCategoryAction(id));
-    }
+    // Get the dispatch function from the redux store
+    const dispatch = useDispatch();
+  
+    // Delete the category from the store
+    dispatch(deleteCategoryAction(id));
+  
+    // Redirect to the categories page
+    window.location.href = "https://main--awesomestore-ecommerce.netlify.app/admin/manage-category";
+  };
   };
   return (
     <div className="px-4 sm:px-6 lg:px-8">
