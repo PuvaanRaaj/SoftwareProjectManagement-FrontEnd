@@ -20,11 +20,12 @@ export default function ManageCategories() {
   } = useSelector((state) => state?.categories);
 
   const DeleteCategory = () => {
-    const { dispatch } = useDispatch();
-  
-    const deleteCategoryHandler = (id) => {
-      dispatch(deleteCategoryAction(id));
-    };
+  const { dispatch } = useDispatch();
+
+  const deleteCategoryHandler = (id) => {
+    dispatch(deleteCategoryAction(id));
+  };
+  };
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -135,7 +136,7 @@ export default function ManageCategories() {
                           <button
                             onClick={deleteCategoryHandler}
                             className="text-indigo-600 hover:text-indigo-900">
-                            
+                              
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
