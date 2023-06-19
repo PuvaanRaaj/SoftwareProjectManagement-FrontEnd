@@ -1,29 +1,40 @@
+
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
+import {
+  updateCategoryAction,
+  resetErrAction,
+  resetSuccessAction,
+} from "../../../redux/slices/categories/categoriesSlice";
 
 export default function UpdateCategory() {
-  //---form data---
+  const dispatch = useDispatch();
+
+  const { category, loading, error, isUpdated } = useSelector(
+    (state) => state.categories
+  );
+
   const [formData, setFormData] = useState({
-    name: categoryName,
+    categoryName: category.name,
   });
-  //---onChange---
+
+  const { categoryName } = formData;
+
   const handleOnChange = (e) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [e.target.name]: e.target.value,
-    }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const updatedCategory = {
-      name: formData.name,
-    };
-    dispatch(updateCategoryAction({ id: categoryId, category: updatedCategory }));
+    const categoryId = category._id; // Fetch the category ID from the current category
+
+    dispatch(updateCategoryAction({ id: categoryId, name: categoryName }));
   };
+
   return (
     <>
       {error && <ErrorComponent message={error?.message} />}
@@ -35,9 +46,10 @@ export default function UpdateCategory() {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor">
-            <path
+            strokeWidth="1.5"
+            stroke="currentColor"
+          >
+           <path
               stroke-linecap="round"
               stroke-linejoin="round"
               d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"
@@ -53,16 +65,17 @@ export default function UpdateCategory() {
             <form className="space-y-6" onSubmit={handleOnSubmit}>
               <div>
                 <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700">
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Name
                 </label>
                 <div className="mt-1">
-                <input
+                  <input
                     id="name"
-                    name="name"
+                    name="categoryName"
                     type="text"
-                    value={name}
+                    value={categoryName}
                     onChange={handleOnChange}
                     className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   />
@@ -74,7 +87,8 @@ export default function UpdateCategory() {
                 ) : (
                   <button
                     type="submit"
-                    className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
                     Update Category
                   </button>
                 )}
@@ -95,26 +109,18 @@ export default function UpdateCategory() {
                 <div>
                   <Link
                     to="/admin/add-brand"
-                    className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50">
+                    className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
+                  >
                     Add Brand
                   </Link>
                 </div>
-
-                {/* <div>
-                  <div>
-                    <Link
-                      to="/admin/add-color"
-                      className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50">
-                      Add Color
-                    </Link>
-                  </div>
-                </div> */}
 
                 <div>
                   <div>
                     <Link
                       to="/admin/add-category"
-                      className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50">
+                      className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
+                    >
                       Add Category
                     </Link>
                   </div>
