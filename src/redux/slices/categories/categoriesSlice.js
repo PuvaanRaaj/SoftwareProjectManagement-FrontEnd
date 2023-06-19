@@ -159,7 +159,7 @@ const categorySlice = createSlice({
 
     // Add a new case for the deleteCategoryAction in your slice
     builder.addCase(deleteCategoryAction.pending, (state) => {
-      state.loading = false;
+      state.loading = true;
     });
     builder.addCase(deleteCategoryAction.fulfilled, (state, action) => {
       state.loading = false;
