@@ -95,7 +95,7 @@ export default function AddBrand() {
                 </div>
               </div>
 
-              <div className="mt-6 grid grid-cols-3 gap-3">
+              <div className="mt-6 grid grid-cols-2 gap-3">
                 <div>
                   <Link
                     to="/admin/add-brand"
@@ -104,15 +104,7 @@ export default function AddBrand() {
                   </Link>
                 </div>
 
-                <div>
-                  <div>
-                    <Link
-                      to="/admin/add-color"
-                      className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50">
-                      Add Color
-                    </Link>
-                  </div>
-                </div>
+                
 
                 <div>
                   <div>
