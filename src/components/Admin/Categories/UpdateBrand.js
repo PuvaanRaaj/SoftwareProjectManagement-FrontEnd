@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import {
   updateBrandAction,
   fetchBrandAction,
-} from "./path/to/brandsSlice"; // Update the path to your brandsSlice file
+} from "../../../redux/slices/categories/brandsSlice"; 
 import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
