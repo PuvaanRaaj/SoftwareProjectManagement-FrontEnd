@@ -1,42 +1,24 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { updateCategoryAction } from "../../../redux/slices/categories/categoriesSlice";
-
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 
-
-export default function UpdateCategory({ id }) { 
-  const dispatch = useDispatch();
-  
-  const { categoryDetails, loading, error, isUpdated } = useSelector(state => state.categories);
-
-  // Initialize formData with the current category data
+export default function UpdateCategory() {
+  //---form data---
   const [formData, setFormData] = useState({
-    name: categoryDetails[id]?.name || '',
+    name: categoryName,
   });
-  
-  // When category details change, update the form data
-  useEffect(() => {
-    if (categoryDetails && categoryDetails[id]) {
-      setFormData({ name: categoryDetails[id].name });
-    }
-
-    // If the category is updated, reset the form
-    if(isUpdated) {
-      setFormData({ name: '' });
-    }
-  }, [categoryDetails, id, isUpdated]);
-
+  //---onChange---
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  let loading, error, isUpdated, categoryName;
+
+  //onSubmit
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateCategoryAction({ id: id, name: formData.name }));
   };
   return (
     <>
