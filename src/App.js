@@ -142,9 +142,14 @@ const App = () => {
             }
           />
           <Route
-          path="edit-brand/:id"
-          element={<UpdateBrand />}
-        />
+            path="edit-brand/:id"
+            element={
+              <AdminRoutes>
+                <UpdateBrand />
+              </AdminRoutes>
+            }
+          />
+
           <Route path="all-brands" element={<BrandsList />} />
           {/* color category */}
           <Route
