@@ -45,7 +45,7 @@ export default function UpdateCategory() {
       setError(null);
       setIsUpdated(false);
 
-      const response = await axios.put(`/api/categories/${id}`, formData);
+      const response = await axios.put(`{${baseURL}}/categories/${id}`, formData);
       setLoading(false);
       setIsUpdated(true);
     } catch (error) {
