@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import {
+  updateBrandAction,
+  fetchBrandAction,
+} from "./path/to/brandsSlice"; // Update the path to your brandsSlice file
 import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
@@ -16,13 +20,13 @@ export default function UpdateBrand() {
   const [error, setError] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchBrand = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${baseURL}/brands/${id}`);
-        const brand = response.data.brand;
-        setFormData({ name: brand?.name }); // Add a check for brand.name
+        await dispatch(fetchBrandAction(id));
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -31,7 +35,7 @@ export default function UpdateBrand() {
     };
 
     fetchBrand();
-  }, [id]);
+  }, [dispatch, id]);
 
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -45,7 +49,7 @@ export default function UpdateBrand() {
       setError(null);
       setIsUpdated(false);
 
-      const response = await axios.put(`${baseURL}/brands/${id}`, formData);
+      await dispatch(updateBrandAction({ id, name: formData.name }));
       setLoading(false);
       setIsUpdated(true);
     } catch (error) {
@@ -53,6 +57,7 @@ export default function UpdateBrand() {
       setError(error.message);
     }
   };
+
 
   return (
     <>

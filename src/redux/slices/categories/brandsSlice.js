@@ -62,6 +62,25 @@ export const deleteBrandAction = createAsyncThunk(
     }
   }
 );
+// Update
+export const updateBrandAction = createAsyncThunk(
+  "brand/update",
+  async ({ id, name }, { rejectWithValue, getState }) => {
+    try {
+      const token = getState()?.users?.userAuth?.userInfo?.token;
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const { data } = await axios.put(`${baseURL}/brands/${id}`, { name }, config);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
 
 //fetch brands action
 export const fetchBrandsAction = createAsyncThunk(
@@ -129,10 +148,29 @@ const brandsSlice = createSlice({
       builder.addCase(deleteBrandAction.fulfilled, (state, action) => {
         state.loading = false;
         // Remove the deleted brand from the state
-        state.brands = state.brands.filter(brand => brand.id !== action.payload);
+        state.brands = state.brands.filter(brand => brand._id !== action.payload);
         state.isDelete = true;
       });
       builder.addCase(deleteBrandAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+        // Update
+      builder.addCase(updateBrandAction.pending, (state) => {
+        state.loading = true;
+      });
+      builder.addCase(updateBrandAction.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isUpdated = true;
+        // Update the brand in the state with the updated data
+        state.brands = state.brands.map(brand => {
+          if (brand._id === action.payload._id) {
+            return action.payload;
+          }
+          return brand;
+        });
+      });
+      builder.addCase(updateBrandAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
