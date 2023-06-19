@@ -87,25 +87,20 @@ export const deleteCategoryAction = createAsyncThunk(
 export const updateCategoryAction = createAsyncThunk(
   "category/update",
   async (payload, { rejectWithValue, getState, dispatch }) => {
-    const { id, name, file } = payload;
-    //formData
-    const formData = new FormData();
-    formData.append("name", name);
-    if (file) {
-      formData.append("file", file);
-    }
-    //Token - Authenticated
+    const { id, name } = payload;
+
+    // Token - Authenticated
     const token = getState()?.users?.userAuth?.userInfo?.token;
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
-    //Images
+
     try {
       const { data } = await axios.put(
         `${baseURL}/categories/${id}`,
-        formData,
+        { name },  // pass name in a simple object
         config
       );
       return data;
@@ -114,6 +109,7 @@ export const updateCategoryAction = createAsyncThunk(
     }
   }
 );
+
 //slice
 const categorySlice = createSlice({
   name: "categories",
