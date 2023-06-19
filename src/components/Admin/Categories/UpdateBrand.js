@@ -1,24 +1,47 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from 'axios';
 import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 
 export default function UpdateBrand() {
-  //---form data---
   const [formData, setFormData] = useState({
-    name: brandName,
+    name: '',
   });
-  //---onChange---
+  
+  const { id } = useParams(); // assuming you are getting brand id from URL
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [isUpdated, setIsUpdated] = useState(false);
+
+  useEffect(() => {
+    axios.get(`${baseURL}/brands/${id}`)
+      .then(response => {
+        setFormData({ name: response.data.name });
+      })
+      .catch(error => {
+        setError(error.message);
+      });
+  }, [id]);
+
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  let loading, error, isUpdated, brandName;
-
-  //onSubmit
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
+    axios.put(`${baseURL}/brands/${id}`, formData)
+      .then(() => {
+        setIsUpdated(true);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError(error.message);
+        setLoading(false);
+      });
   };
   return (
     <>
