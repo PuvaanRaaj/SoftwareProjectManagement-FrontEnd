@@ -8,7 +8,7 @@ import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 
 
-export default function UpdateCategory({ categoryId }) { 
+export default function UpdateCategory({ id }) { 
   const dispatch = useDispatch();
   
   const { categoryDetails, loading, error, isUpdated } = useSelector(state => state.categories);
@@ -18,15 +18,15 @@ export default function UpdateCategory({ categoryId }) {
   
   useEffect(() => {
     // When category details change, update the form data
-    if (categoryDetails && categoryDetails[categoryId]) {
-      setFormData({ name: categoryDetails[categoryId].name });
+    if (categoryDetails && categoryDetails[id]) {
+      setFormData({ name: categoryDetails[id].name });
     }
 
     // If the category is updated, reset the form
     if(isUpdated) {
       setFormData({ name: '' });
     }
-  }, [categoryDetails, categoryId, isUpdated]);
+  }, [categoryDetails, id, isUpdated]);
 
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,7 +34,7 @@ export default function UpdateCategory({ categoryId }) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateCategoryAction({ id: categoryId, name: formData.name }));
+    dispatch(updateCategoryAction({ id: id, name: formData.name }));
   };
   return (
     <>
