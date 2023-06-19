@@ -103,7 +103,7 @@ export default function ShoppingCart() {
                           </p>
                         </div>
                         <p className="mt-1 text-sm font-medium text-gray-900">
-                          ${product?.price} x {product?.qty} = $
+                          RM {product?.price} x {product?.qty} = RM 
                           {product?.totalPrice}
                         </p>
                       </div>
@@ -204,7 +204,7 @@ export default function ShoppingCart() {
                   Order total
                 </dt>
                 <dd className=" text-xl font-medium text-gray-900">
-                  $ {sumTotalPrice}
+                  RM {sumTotalPrice}
                 </dd>
               </div>
             </dl>
