@@ -84,7 +84,7 @@ export default function BrandsList() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
-                    {brands?.map((brand) => (
+                  {brands?.map((brand) => (
                       <tr key={brand?._id}>
                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                           <div className="flex items-center">
@@ -100,12 +100,12 @@ export default function BrandsList() {
                         </td>
                         {/* edit icon */}
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
-                          <Link
-                            to={`/admin/edit-category/${category?._id}`}
-                            state={{
-                              categoryName: category?.name,
-                            }}
-                            className="text-indigo-600 hover:text-indigo-900">
+                        <Link
+                          to={`/admin/edit-brand/${brand?._id}`}
+                          state={{
+                            brandName: brand?.name,
+                          }}
+                          className="text-indigo-600 hover:text-indigo-900">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -120,7 +120,7 @@ export default function BrandsList() {
                               />
                             </svg>
 
-                            <span className="sr-only">, {category?.name}</span>
+                            <span className="sr-only">{brand?.name}</span>
                           </Link>
                         </td>
                         {/* delete icon */}
