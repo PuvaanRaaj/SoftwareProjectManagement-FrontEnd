@@ -43,16 +43,17 @@ export default function ShoppingCart() {
     dispatch(getCartItemsFromLocalStorageAction());
   };
   console.log(cartItems);
-  // Calculate total price
+  //calculate total price
   let sumTotalPrice = 0;
   sumTotalPrice = cartItems?.reduce((acc, current) => {
     return acc + current?.totalPrice;
   }, 0);
 
-  // Check if coupon found and apply discount
+  //check if coupon found
   if (coupon) {
-    const discount = (sumTotalPrice * coupon?.coupon?.discount) / 100;
-    sumTotalPrice = (sumTotalPrice - discount).toFixed(2); // Round to 2 decimal places
+    sumTotalPrice =
+      sumTotalPrice - (sumTotalPrice * coupon?.coupon?.discount) / 100;
+      
   }
   //price of the product - (price of product x discount/100)
   //remove cart  Item handler
@@ -164,7 +165,7 @@ export default function ShoppingCart() {
               <div className="flex items-center justify-between">
                 <dt className="text-sm text-gray-600">Subtotal</dt>
                 <dd className="text-sm font-medium text-gray-900">
-                RM {sumTotalPrice.toFixed(2)}
+                RM {sumTotalPrice}
                 </dd>
               </div>
               <div className="flex items-center justify-between border-t border-gray-200 pt-4"></div>
@@ -205,7 +206,7 @@ export default function ShoppingCart() {
                   Order total
                 </dt>
                 <dd className=" text-xl font-medium text-gray-900">
-                RM {sumTotalPrice.toFixed(2)}
+                  RM {sumTotalPrice}
                 </dd>
               </div>
             </dl>

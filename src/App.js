@@ -142,7 +142,7 @@ const App = () => {
             }
           />
           <Route
-          path="update-brand/:id"
+          path="edit-brand/:id"
           element={<UpdateBrand />}
         />
           <Route path="all-brands" element={<BrandsList />} />
