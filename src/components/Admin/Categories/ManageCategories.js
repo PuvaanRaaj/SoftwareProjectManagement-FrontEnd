@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchCategoriesAction, deleteCategoryAction } from "../../../redux/slices/categories/categoriesSlice";
+
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 import NoDataFound from "../../NoDataFound/NoDataFound";
@@ -18,17 +19,12 @@ export default function ManageCategories() {
     error,
   } = useSelector((state) => state?.categories);
 
-  //delete category handler
-  const deleteCategoryHandler = (id) => {
-    // Get the dispatch function from the redux store
-    const dispatch = useDispatch();
+  const DeleteCategory = () => {
+    const { dispatch } = useDispatch();
   
-    // Delete the category from the store
-    dispatch(deleteCategoryAction(id));
-  
-    // Redirect to the categories page
-    window.location.href = "https://main--awesomestore-ecommerce.netlify.app/admin/manage-category";
-  };
+    const deleteCategoryHandler = (id) => {
+      dispatch(deleteCategoryAction(id));
+    };
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -137,8 +133,9 @@ export default function ManageCategories() {
                         {/* delete icon */}
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
                           <button
-                            onClick={() => deleteCategoryHandler(category?._id)}
+                            onClick={deleteCategoryHandler}
                             className="text-indigo-600 hover:text-indigo-900">
+                            
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
