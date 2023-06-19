@@ -26,7 +26,7 @@ export default function UpdateBrand() {
     const fetchBrand = async () => {
       try {
         setLoading(true);
-        await dispatch(fetchBrandAction(id));
+        await dispatch(fetchBrandsAction(id));
         setLoading(false);
       } catch (error) {
         setLoading(false);
