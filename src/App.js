@@ -29,12 +29,14 @@ import OrdersList from "./components/Admin/Orders/OdersList";
 import ManageOrders from "./components/Admin/Orders/ManageOrders";
 import Customers from "./components/Admin/Orders/Customers";
 import BrandsList from "./components/Admin/Categories/BrandsList";
+import UpdateBrand from "./components/Admin/Categories/UpdateBrand";
 import AuthRoute from "./components/AuthRoute/AuthRoute";
 import AdminRoutes from "./components/AuthRoute/AdminRoutes";
 import ThanksForOrdering from "./components/Users/Products/ThanksForOrdering";
 import ProductUpdate from "./components/Admin/Products/ProductUpdate";
 import UpdateOrders from "./components/Admin/Orders/UpdateOrders";
 import ColorsList from "./components/Admin/Categories/ColorsList";
+
 import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
@@ -139,6 +141,10 @@ const App = () => {
               </AdminRoutes>
             }
           />
+          <Route
+          path="update-brand/:id"
+          element={<UpdateBrand />}
+        />
           <Route path="all-brands" element={<BrandsList />} />
           {/* color category */}
           <Route
@@ -149,6 +155,7 @@ const App = () => {
               </AdminRoutes>
             }
           />
+          
           <Route path="all-colors" element={<ColorsList />} />
           {/* Orders */}
           <Route path="manage-orders" element={<ManageOrders />} />

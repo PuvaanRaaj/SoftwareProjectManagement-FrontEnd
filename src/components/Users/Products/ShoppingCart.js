@@ -43,17 +43,16 @@ export default function ShoppingCart() {
     dispatch(getCartItemsFromLocalStorageAction());
   };
   console.log(cartItems);
-  //calculate total price
+  // Calculate total price
   let sumTotalPrice = 0;
   sumTotalPrice = cartItems?.reduce((acc, current) => {
     return acc + current?.totalPrice;
   }, 0);
 
-  //check if coupon found
+  // Check if coupon found and apply discount
   if (coupon) {
-    sumTotalPrice =
-      sumTotalPrice - (sumTotalPrice * coupon?.coupon?.discount) / 100;
-      sumTotalPrice = sumTotalPrice.toFixed(2);
+    const discount = (sumTotalPrice * coupon?.coupon?.discount) / 100;
+    sumTotalPrice = (sumTotalPrice - discount).toFixed(2); // Round to 2 decimal places
   }
   //price of the product - (price of product x discount/100)
   //remove cart  Item handler
