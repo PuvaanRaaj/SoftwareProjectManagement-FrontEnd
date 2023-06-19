@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchCategoriesAction } from "../../../redux/slices/categories/categoriesSlice";
+import { fetchCategoriesAction, deleteCategoryAction } from "../../../redux/slices/categories/categoriesSlice";
+
 
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
@@ -20,7 +21,12 @@ export default function ManageCategories() {
   } = useSelector((state) => state?.categories);
 
   //delete category handler
-  const deleteCategoryHandler = (id) => {};
+  const deleteCategoryHandler = (id) => {
+    if (window.confirm("Are you sure you want to delete this category?")) {
+      dispatch(deleteCategoryAction(id));
+    }
+  };
+  
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">

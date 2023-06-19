@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCategoryAction } from "../../../redux/slices/categories/categoriesSlice"; // replace this with the actual path to your slice file
+
 import { Link } from "react-router-dom";
 import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
@@ -7,7 +10,7 @@ import LoadingComponent from "../../LoadingComp/LoadingComponent";
 export default function UpdateCategory() {
   //---form data---
   const [formData, setFormData] = useState({
-    name: categoryName,
+    name: category?.name,
   });
   //---onChange---
   const handleOnChange = (e) => {

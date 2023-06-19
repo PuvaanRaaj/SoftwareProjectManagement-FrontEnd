@@ -67,13 +67,47 @@ export const deleteCategoryAction = createAsyncThunk(
   "category/delete",
   async (id, { rejectWithValue, getState, dispatch }) => {
     try {
+      //Token - Authenticated
       const token = getState()?.users?.userAuth?.userInfo?.token;
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
-      const { data } = await axios.delete(`${baseURL}/categories/${id}`, config);
+      await axios.delete(`${baseURL}/categories/${id}`, config);
+      return id;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+
+// Update category action
+export const updateCategoryAction = createAsyncThunk(
+  "category/update",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    const { id, name, file } = payload;
+    //formData
+    const formData = new FormData();
+    formData.append("name", name);
+    if (file) {
+      formData.append("file", file);
+    }
+    //Token - Authenticated
+    const token = getState()?.users?.userAuth?.userInfo?.token;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    //Images
+    try {
+      const { data } = await axios.put(
+        `${baseURL}/categories/${id}`,
+        formData,
+        config
+      );
       return data;
     } catch (error) {
       return rejectWithValue(error?.response?.data);
@@ -129,9 +163,24 @@ const categorySlice = createSlice({
     });
     builder.addCase(deleteCategoryAction.fulfilled, (state, action) => {
       state.loading = false;
-      state.isDelete = true;
+      state.categories = state.categories.filter(category => category._id !== action.payload);
     });
     builder.addCase(deleteCategoryAction.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+    
+
+        // Add to your category slice:
+    builder.addCase(updateCategoryAction.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(updateCategoryAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.category = action.payload;
+      state.isUpdated = true;
+    });
+    builder.addCase(updateCategoryAction.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });
