@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCategoryAction } from "../../../redux/slices/categories/categoriesSlice"; // replace this with the actual path to your slice file
+import { updateCategoryAction } from "../../../redux/slices/categories/categoriesSlice";
 
 import { Link } from "react-router-dom";
 import ErrorComponent from "../../ErrorMsg/ErrorMsg";
 import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
+
 
 export default function UpdateCategory({ categoryId }) { // you need to pass the categoryId as a prop
   const dispatch = useDispatch();
