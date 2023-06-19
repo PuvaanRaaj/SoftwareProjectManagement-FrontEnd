@@ -306,7 +306,7 @@ export default function Navbar() {
                     <img
                       className="h-32 mt-2 w-auto"
                       src={logo}
-                      alt="i-novotek logo"
+                      alt="awesomestore"
                     />
                   </Link>
 

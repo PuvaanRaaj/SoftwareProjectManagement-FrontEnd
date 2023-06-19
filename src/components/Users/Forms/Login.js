@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUserAction } from "../../../redux/slices/users/usersSlice";
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
-
+import logo from "./homepage.jpg";
 const Login = () => {
   //dispatch
   const dispatch = useDispatch();
@@ -97,7 +97,7 @@ const Login = () => {
               </div>
             </div>
             <div className="w-full md:w-2/6 h-128 md:h-auto flex items-center lg:items-end px-4 pb-20 bg-no-repeat">
-              <img src="homepage.jpg" 
+              <img src={logo} 
                   style={{width: '100%', height: '100%', objectFit: 'cover'}} 
                   alt="A bookshelf"/>
               </div>  
