@@ -123,7 +123,7 @@ const App = () => {
             }
           />
           <Route
-            path="categories/:id"
+            path="edit-category/:id"
             element={
               <AdminRoutes>
                 <UpdateCategory />
