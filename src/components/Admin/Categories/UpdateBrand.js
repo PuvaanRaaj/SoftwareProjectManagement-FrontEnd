@@ -26,7 +26,9 @@ export default function UpdateBrand() {
     const fetchBrand = async () => {
       try {
         setLoading(true);
-        await dispatch(fetchBrandsAction(id));
+        const response = await axios.get(`${baseURL}/brands/${id}`);
+        const brand = response.data.brand;
+        setFormData({ name: brand?.name }); // Add a check for brand.name
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -35,7 +37,7 @@ export default function UpdateBrand() {
     };
 
     fetchBrand();
-  }, [dispatch, id]);
+  }, [id]);
 
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
