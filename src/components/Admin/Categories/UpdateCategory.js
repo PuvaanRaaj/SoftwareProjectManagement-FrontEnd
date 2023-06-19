@@ -12,12 +12,14 @@ export default function UpdateCategory({ id }) {
   const dispatch = useDispatch();
   
   const { categoryDetails, loading, error, isUpdated } = useSelector(state => state.categories);
+
+  // Initialize formData with the current category data
+  const [formData, setFormData] = useState({
+    name: categoryDetails[id]?.name || '',
+  });
   
-  // Initialize form data state as an empty object
-  const [formData, setFormData] = useState({});
-  
+  // When category details change, update the form data
   useEffect(() => {
-    // When category details change, update the form data
     if (categoryDetails && categoryDetails[id]) {
       setFormData({ name: categoryDetails[id].name });
     }
