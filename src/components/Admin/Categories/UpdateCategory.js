@@ -11,14 +11,18 @@ export default function UpdateCategory() {
   });
   //---onChange---
   const handleOnChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [e.target.name]: e.target.value,
+    }));
   };
-
-  let loading, error, isUpdated, categoryName;
-
-  //onSubmit
+  
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    const updatedCategory = {
+      name: formData.name,
+    };
+    dispatch(updateCategoryAction({ id: categoryId, category: updatedCategory }));
   };
   return (
     <>
@@ -54,10 +58,12 @@ export default function UpdateCategory() {
                   Name
                 </label>
                 <div className="mt-1">
-                  <input
-                    onChange={handleOnChange}
-                    value={formData.name}
+                <input
+                    id="name"
                     name="name"
+                    type="text"
+                    value={name}
+                    onChange={handleOnChange}
                     className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   />
                 </div>
