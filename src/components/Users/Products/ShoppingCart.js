@@ -53,6 +53,7 @@ export default function ShoppingCart() {
   if (coupon) {
     sumTotalPrice =
       sumTotalPrice - (sumTotalPrice * coupon?.coupon?.discount) / 100;
+      sumTotalPrice = sumTotalPrice.toFixed(2);
   }
   //price of the product - (price of product x discount/100)
   //remove cart  Item handler
@@ -164,7 +165,7 @@ export default function ShoppingCart() {
               <div className="flex items-center justify-between">
                 <dt className="text-sm text-gray-600">Subtotal</dt>
                 <dd className="text-sm font-medium text-gray-900">
-                RM {sumTotalPrice}
+                RM {sumTotalPrice.toFixed(2)}
                 </dd>
               </div>
               <div className="flex items-center justify-between border-t border-gray-200 pt-4"></div>
@@ -205,7 +206,7 @@ export default function ShoppingCart() {
                   Order total
                 </dt>
                 <dd className=" text-xl font-medium text-gray-900">
-                  RM {sumTotalPrice}
+                RM {sumTotalPrice.toFixed(2)}
                 </dd>
               </div>
             </dl>
