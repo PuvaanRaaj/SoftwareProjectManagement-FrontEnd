@@ -8,33 +8,33 @@ import SuccessMsg from "../../SuccessMsg/SuccessMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 
 
-export default function UpdateCategory({ categoryId }) { // you need to pass the categoryId as a prop
+export default function UpdateCategory({ categoryId }) { 
   const dispatch = useDispatch();
   
-  // Extract category details, loading, error, and isUpdated from your Redux store
   const { categoryDetails, loading, error, isUpdated } = useSelector(state => state.categories);
-  const { name: categoryName } = categoryDetails[categoryId] || {}; // make sure to structure this based on your state structure
+  
+  // Initialize form data state as an empty object
+  const [formData, setFormData] = useState({});
   
   useEffect(() => {
+    // When category details change, update the form data
+    if (categoryDetails && categoryDetails[categoryId]) {
+      setFormData({ name: categoryDetails[categoryId].name });
+    }
+
     // If the category is updated, reset the form
     if(isUpdated) {
       setFormData({ name: '' });
     }
-  }, [isUpdated]);
+  }, [categoryDetails, categoryId, isUpdated]);
 
-  //---form data---
-  const [formData, setFormData] = useState({
-    name: categoryName,
-  });
-  //---onChange---
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  //onSubmit
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateCategoryAction({ id: categoryId, name: formData.name })); // dispatch updateCategoryAction
+    dispatch(updateCategoryAction({ id: categoryId, name: formData.name }));
   };
   return (
     <>
