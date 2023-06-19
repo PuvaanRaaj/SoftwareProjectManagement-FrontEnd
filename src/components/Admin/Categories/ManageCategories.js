@@ -29,7 +29,6 @@ export default function ManageCategories() {
     // Redirect to the categories page
     window.location.href = "https://main--awesomestore-ecommerce.netlify.app/admin/manage-category";
   };
-  };
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
