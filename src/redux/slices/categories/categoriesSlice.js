@@ -163,7 +163,7 @@ const categorySlice = createSlice({
     });
     builder.addCase(deleteCategoryAction.fulfilled, (state, action) => {
       state.loading = false;
-      state.categories = state.categories.filter(category => category._id !== action.payload);
+      state.categories = action.payload;
     });
     builder.addCase(deleteCategoryAction.rejected, (state, action) => {
       state.loading = false;
