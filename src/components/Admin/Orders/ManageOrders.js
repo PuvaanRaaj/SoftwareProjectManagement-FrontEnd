@@ -60,7 +60,7 @@ export default function ManageOrders() {
                               Total amount
                             </dt>
                             <dd className="mt-1 font-medium text-gray-900">
-                              $ {order.totalPrice}
+                              RM {order.totalPrice}
                             </dd>
                           </div>
                         </dl>
