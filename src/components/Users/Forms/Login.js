@@ -96,11 +96,11 @@ const Login = () => {
                 </form>
               </div>
             </div>
-            <div className="w-full md:w-2/6 h-128 md:h-auto flex items-center lg:items-end px-4 pb-20 bg-no-repeat mt-2 ml-2">
-                <img src={logo} 
-                    style={{width: '100%', height: '100%', objectFit: 'cover'}} 
-                    alt="A bookshelf"/>
-            </div>   
+            <div className="w-full md:w-2/6 h-128 md:h-auto flex items-center lg:items-end px-4 pb-20 bg-no-repeat">
+              <img src={logo} 
+                  style={{width: '100%', height: '100%', objectFit: 'cover'}} 
+                  alt="A bookshelf"/>
+              </div>  
           </div>
         </div>
       </section>
