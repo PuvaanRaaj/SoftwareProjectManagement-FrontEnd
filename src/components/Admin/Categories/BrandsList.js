@@ -1,20 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { deleteBrandAction } from "../../../redux/slices/categories/brandsSlice";
 import { Link } from "react-router-dom";
 import { fetchBrandsAction } from "../../../redux/slices/categories/brandsSlice";
+import { deleteBrandAction } from "../../../redux/slices/categories/brandsSlice";
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 import NoDataFound from "../../NoDataFound/NoDataFound";
-const people = [
-  {
-    name: "Lindsay Walton",
-    title: "Front-end Developer",
-    email: "lindsay.walton@example.com",
-    role: "Member",
-  },
-  // More people...
-];
+
+
 export default function BrandsList() {
   
   //dispatch
@@ -127,14 +122,16 @@ export default function BrandsList() {
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
                           <button
                             onClick={() => deleteBrandHandler(brand?._id)}
-                            className="text-indigo-600 hover:text-indigo-900">
+                            className="text-indigo-600 hover:text-indigo-900"
+                          >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke-width="1.5"
                               stroke="currentColor"
-                              class="w-6 h-6">
+                              class="w-6 h-6"
+                            >
                               <path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
