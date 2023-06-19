@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 import {
   updateBrandAction,
   fetchBrandsAction,
