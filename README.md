@@ -4,47 +4,40 @@ This project is a frontend application built using React for my final project in
 
 ## Installation and Local Development
 
+
 First, you will need to clone the repository:
-
-\`\`\`
+```bash
 git clone https://github.com/PuvaanRaaj/SoftwareProjectManagement-FrontEnd.git
-\`\`\`
-
+```
 Next, navigate into the project directory:
-
-\`\`\`
-cd your-project-name
-\`\`\`
-
+```bash
+cd SoftwareProjectManagement-FrontEnd
+```
 Then, install the necessary dependencies:
-
-\`\`\`
+```bash
 npm install
-\`\`\`
-
+```
 Once the installation is complete, you can run the application in development mode with:
-
-\`\`\`
+```bash
 npm start
-\`\`\`
-
-The application will run on [http://localhost:3000](http://localhost:3000) in your browser. The page will automatically reload when you make changes to the source code.
+```
+The application will run on http://localhost:3000 in your browser. The page will automatically reload if you make changes to the source code.
 
 ## Available Scripts
 
-In addition to `npm start`, the following scripts are available:
+In addition to npm start, the following scripts are available:
 
-### `npm test`
+### npm test
 
 This launches the test runner in interactive watch mode.\
-For more information, see the [running tests](https://facebook.github.io/create-react-app/docs/running-tests) section.
+For more information, see the running tests section.
 
-### `npm run build`
+### npm run build
 
-This builds the application for production to the `build` folder. It bundles React in production mode and optimizes the build for best performance. The build is minified, and the filenames include hashes for efficient caching.\
-For more information, see the [deployment](https://facebook.github.io/create-react-app/docs/deployment) section.
+This builds the application for production to the build folder. It bundles React in production mode and optimizes the build for best performance. The build is minified, and the filenames include hashes for efficient caching.\
+For more information, see the deployment section.
 
-### `npm run eject`
+### npm run eject
 
 This command removes the single build dependency from the project, and copies all configuration files and transitive dependencies (webpack, Babel, ESLint, etc) directly into the project. This gives you full control over the build configuration, but also means that you are responsible for maintaining this configuration.
 
@@ -52,7 +45,6 @@ This command removes the single build dependency from the project, and copies al
 
 This project is licensed under the terms of the MIT license. 
 
-\`\`\`
 MIT License
 
 Copyright (c) 2023 Puvaan Raaj
@@ -74,9 +66,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-\`\`\`
 
 ## Learn More
 
-For more information on React, check out the [React documentation](https://reactjs.org/).
+For more information on React, check out the React documentation.
 
+## Frontend Setup Video Guide
+
+For a comprehensive guide on setting up the frontend of this project, you can watch the complete setup video here: https://youtu.be/q_9zxi1dwYM
