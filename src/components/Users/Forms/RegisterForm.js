@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUserAction } from "../../../redux/slices/users/usersSlice";
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
-
+import logo from "./homepage.jpg";
 const RegisterForm = () => {
   //dispatch
   const dispatch = useDispatch();
@@ -86,10 +86,11 @@ const RegisterForm = () => {
         <div
           className="hidden lg:block lg:absolute top-0 bottom-0 right-0 lg:w-3/6 bg-center bg-cover bg-no-repeat"
           style={{
-            backgroundImage:
-              'url("https://cdn.pixabay.com/photo/2017/03/29/04/47/high-heels-2184095_1280.jpg")',
           }}
-        />
+        > <img src={logo} 
+        style={{width: '100%', height: '100%', objectFit: 'cover'}} 
+        alt="A bookshelf"/>
+    </div>  
       </section>
     </>
   );
